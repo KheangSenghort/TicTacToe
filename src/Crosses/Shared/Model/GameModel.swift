@@ -19,14 +19,31 @@ class GameModel : NSObject, NSCopying {
     
     var state = GameBoardState()
     
-    override init() {
-        
+    required override init() {
+        super.init()
     }
     
     func copy(with zone: NSZone? = nil) -> Any {
-        let c = super.copy() as! GameModel
+        let c = type(of: self).init()
         c.state = self.state
         c.activePlayer = activePlayer
         return c
+    }
+    
+    func canMove(location: GameBoardState.Location) -> Bool {
+        return state[location] == .empty
+    }
+    
+    @discardableResult func move(location: GameBoardState.Location) -> Bool {
+        guard canMove(location: location) else {
+            return false
+        }
+        
+        guard let player = currentPlayer else {
+            return false
+        }
+        
+        state[location] = player.chip
+        return true
     }
 }

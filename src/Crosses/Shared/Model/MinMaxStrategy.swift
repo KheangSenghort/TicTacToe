@@ -20,9 +20,8 @@ extension Player : GKGameModelPlayer {
 extension GameModel : GKGameModel {
 
     public func apply(_ gameModelUpdate: GKGameModelUpdate) {
-        let player = currentPlayer!
-        let move = gameModelUpdate as! GameMove
-        state[move.moveTo] = player.chip
+        let update = gameModelUpdate as! GameMove
+        move(location:update.moveTo)
     }
     
     public func gameModelUpdates(for player: GKGameModelPlayer) -> [GKGameModelUpdate]? {
@@ -68,6 +67,7 @@ extension GameModel : GKGameModel {
         let player = player as! Player
         return state.isWin(playerCell: player.chip)
     }
+    
 }
 
 class GameMove : NSObject, GKGameModelUpdate {

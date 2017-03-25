@@ -21,7 +21,19 @@
 		C056A5F71E863C1100E734D1 /* MinMaxStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C056A5F61E863C1100E734D1 /* MinMaxStrategy.swift */; };
 		C09E1D071E861480003BBE7E /* GameBoardState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09E1D061E861480003BBE7E /* GameBoardState.swift */; };
 		C0A5DA441E86602500F12E41 /* GameBoardSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A5DA431E86602500F12E41 /* GameBoardSprite.swift */; };
+		C0F42EC91E86933D00FE9C28 /* CrossesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F42EC81E86933D00FE9C28 /* CrossesTests.swift */; };
+		C0F42ED31E86938900FE9C28 /* GameBoardStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F42ED21E86938900FE9C28 /* GameBoardStateTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C0F42ECB1E86933D00FE9C28 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C0558F7B1E86006400CEBF26 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C0558F871E86006400CEBF26;
+			remoteInfo = iOS;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		C02A602E1E8630E100393ADF /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -40,10 +52,21 @@
 		C056A5F61E863C1100E734D1 /* MinMaxStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinMaxStrategy.swift; sourceTree = "<group>"; };
 		C09E1D061E861480003BBE7E /* GameBoardState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameBoardState.swift; sourceTree = "<group>"; };
 		C0A5DA431E86602500F12E41 /* GameBoardSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameBoardSprite.swift; sourceTree = "<group>"; };
+		C0F42EC61E86933D00FE9C28 /* CrossesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CrossesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0F42EC81E86933D00FE9C28 /* CrossesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrossesTests.swift; sourceTree = "<group>"; };
+		C0F42ECA1E86933D00FE9C28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C0F42ED21E86938900FE9C28 /* GameBoardStateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameBoardStateTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		C0558F851E86006400CEBF26 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C0F42EC31E86933D00FE9C28 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -65,8 +88,10 @@
 		C0558F7A1E86006400CEBF26 = {
 			isa = PBXGroup;
 			children = (
+				C0F42ED01E86935800FE9C28 /* Shared-Tests */,
 				C0558F7F1E86006400CEBF26 /* Shared */,
 				C0558F8A1E86006400CEBF26 /* iOS */,
+				C0F42EC71E86933D00FE9C28 /* CrossesTests */,
 				C0558F891E86006400CEBF26 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -87,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				C0558F881E86006400CEBF26 /* Crosses.app */,
+				C0F42EC61E86933D00FE9C28 /* CrossesTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -123,6 +149,31 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		C0F42EC71E86933D00FE9C28 /* CrossesTests */ = {
+			isa = PBXGroup;
+			children = (
+				C0F42EC81E86933D00FE9C28 /* CrossesTests.swift */,
+				C0F42ECA1E86933D00FE9C28 /* Info.plist */,
+			);
+			path = CrossesTests;
+			sourceTree = "<group>";
+		};
+		C0F42ED01E86935800FE9C28 /* Shared-Tests */ = {
+			isa = PBXGroup;
+			children = (
+				C0F42ED11E86936700FE9C28 /* Model */,
+			);
+			path = "Shared-Tests";
+			sourceTree = "<group>";
+		};
+		C0F42ED11E86936700FE9C28 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C0F42ED21E86938900FE9C28 /* GameBoardStateTests.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,6 +194,24 @@
 			productReference = C0558F881E86006400CEBF26 /* Crosses.app */;
 			productType = "com.apple.product-type.application";
 		};
+		C0F42EC51E86933D00FE9C28 /* CrossesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C0F42ECF1E86933D00FE9C28 /* Build configuration list for PBXNativeTarget "CrossesTests" */;
+			buildPhases = (
+				C0F42EC21E86933D00FE9C28 /* Sources */,
+				C0F42EC31E86933D00FE9C28 /* Frameworks */,
+				C0F42EC41E86933D00FE9C28 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C0F42ECC1E86933D00FE9C28 /* PBXTargetDependency */,
+			);
+			name = CrossesTests;
+			productName = CrossesTests;
+			productReference = C0F42EC61E86933D00FE9C28 /* CrossesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -157,6 +226,12 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = F3VP86DSRS;
 						ProvisioningStyle = Automatic;
+					};
+					C0F42EC51E86933D00FE9C28 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = F3VP86DSRS;
+						ProvisioningStyle = Automatic;
+						TestTargetID = C0558F871E86006400CEBF26;
 					};
 				};
 			};
@@ -174,6 +249,7 @@
 			projectRoot = "";
 			targets = (
 				C0558F871E86006400CEBF26 /* iOS */,
+				C0F42EC51E86933D00FE9C28 /* CrossesTests */,
 			);
 		};
 /* End PBXProject section */
@@ -188,6 +264,13 @@
 				C0558F941E86006500CEBF26 /* LaunchScreen.storyboard in Resources */,
 				C02A60301E8630E100393ADF /* GameScene.sks in Resources */,
 				C0558F991E86006500CEBF26 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C0F42EC41E86933D00FE9C28 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,7 +293,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C0F42EC21E86933D00FE9C28 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C0F42ED31E86938900FE9C28 /* GameBoardStateTests.swift in Sources */,
+				C0F42EC91E86933D00FE9C28 /* CrossesTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C0F42ECC1E86933D00FE9C28 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C0558F871E86006400CEBF26 /* iOS */;
+			targetProxy = C0F42ECB1E86933D00FE9C28 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		C0558F8F1E86006500CEBF26 /* Main.storyboard */ = {
@@ -351,6 +451,41 @@
 			};
 			name = Release;
 		};
+		C0F42ECD1E86933D00FE9C28 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = F3VP86DSRS;
+				INFOPLIST_FILE = CrossesTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.basilsalad.CrossesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Crosses.app/Crosses";
+			};
+			name = Debug;
+		};
+		C0F42ECE1E86933D00FE9C28 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = F3VP86DSRS;
+				INFOPLIST_FILE = CrossesTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.basilsalad.CrossesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Crosses.app/Crosses";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -371,6 +506,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		C0F42ECF1E86933D00FE9C28 /* Build configuration list for PBXNativeTarget "CrossesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C0F42ECD1E86933D00FE9C28 /* Debug */,
+				C0F42ECE1E86933D00FE9C28 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

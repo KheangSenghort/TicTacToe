@@ -9,22 +9,33 @@
 import SpriteKit
 
 class GameBoardSprite : SKSpriteNode {
-    var currentBoardState = GameBoardState()
+//    var currentBoardState = GameBoardState()
     
-    func toggleState(at: CGPoint) {
-        let boardPos = cellLocationFrom(nodePoint: at)
-        print("toggleState: \(boardPos)")
-        let cellValue = currentBoardState[boardPos]
-        if cellValue == .empty {
-            // toggle state
-
-            let node = SKSpriteNode(imageNamed: "Player_X")
-            node.position = nodePointFrom(cellLocation: boardPos)
-            self.addChild(node)
-            currentBoardState[boardPos] = .playerX
+    weak var delegate : GameBoardSpriteDelegate?
+    
+    var cells = Dictionary<GameBoardState.Location,SKSpriteNode>()
+    
+//    func toggleState(at: CGPoint) {
+//        let boardPos = cellLocationFrom(nodePoint: at)
+//        print("toggleState: \(boardPos)")
+//        let cellValue = currentBoardState[boardPos]
+//        if cellValue == .empty {
+//            // toggle state
+//
+//            let node = SKSpriteNode(imageNamed: "Player_X")
+//            node.position = nodePointFrom(cellLocation: boardPos)
+//            self.addChild(node)
+//            currentBoardState[boardPos] = .playerX
+//        }
+//    }
+    
+    func handlePress(at pressLocation: CGPoint) {
+        guard let delegate = self.delegate else {
+            return
         }
+        let location = cellLocationFrom(nodePoint:pressLocation)
+        delegate.gameBoardSprite(self, didPressAtLocation: location)
     }
-    
     
     func cellLocationFrom(nodePoint: CGPoint) -> GameBoardState.Location {
         let size = self.size
@@ -43,27 +54,32 @@ class GameBoardSprite : SKSpriteNode {
         let y = round(CGFloat(cellLocation.row) * cellSize.height - size.height * anchorPoint.y + cellSize.height / 2)
         return CGPoint(x: x, y: y)
     }
+    
+    func setCellAt(location: GameBoardState.Location, value: GameBoardState.Cell) {
+        if value == .empty {
+            cells.removeValue(forKey: location)
+            return
+        }
+        if let existingSprite = cells[location] {
+            existingSprite.removeFromParent()
+        }
+        let cell = SKSpriteNode(imageNamed: value == .playerX ? "Player_X" : "Player_O")
+        cell.position = nodePointFrom(cellLocation: location)
+        self.addChild(cell)
+        cells[location] = cell
+    }
 }
 
 
 #if os(iOS) || os(tvOS)
-    // Touch-based event handling
     extension GameBoardSprite {
         override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
             let touch = touches.first!
-            toggleState(at: touch.location(in: self))
-        }
-        
-        override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-            //print("touchesMoved: \(touches)")
-        }
-        
-        override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-            //print("touchesEnded: \(touches)")
-        }
-        
-        override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-            //print("touchesCancelled: \(touches)")
+            handlePress(at: touch.location(in: self))
         }
     }
 #endif
+
+protocol GameBoardSpriteDelegate : NSObjectProtocol {
+    func gameBoardSprite(_ sprite: GameBoardSprite, didPressAtLocation: GameBoardState.Location)
+}

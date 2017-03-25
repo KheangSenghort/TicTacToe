@@ -15,7 +15,7 @@ struct GameBoardState {
         case playerO
     }
     
-    struct Location {
+    struct Location : Hashable {
         var row = 0
         var column = 0
         
@@ -23,6 +23,17 @@ struct GameBoardState {
             self.row = row
             self.column = column
         }
+        
+        public static func ==(lhs: Location, rhs: Location) -> Bool {
+            return lhs.row == rhs.row && lhs.column == rhs.column
+        }
+        
+        public var hashValue: Int {
+            get {
+                return row << 1 ^ column
+            }
+        }
+        
     }
     
     static let horizontalCount = 3
@@ -48,10 +59,10 @@ struct GameBoardState {
         }
 
         // check column wins
-        for i in 0...GameBoardState.horizontalCount {
+        for i in 0..<GameBoardState.horizontalCount {
             if self[Location(column:i,row:0)] == playerCell {
                 var foundOther = false
-                for j in 1...GameBoardState.verticalCount {
+                for j in 1..<GameBoardState.verticalCount {
                     if self[Location(column:i,row:j)] != playerCell {
                         foundOther = true
                         break
@@ -64,10 +75,10 @@ struct GameBoardState {
         }
 
         // check row wins
-        for j in 0...GameBoardState.horizontalCount {
+        for j in 0..<GameBoardState.horizontalCount {
             if self[Location(column:0,row:j)] == playerCell {
                 var foundOther = false
-                for i in 1...GameBoardState.verticalCount {
+                for i in 1..<GameBoardState.verticalCount {
                     if self[Location(column:i,row:j)] != playerCell {
                         foundOther = true
                         break
@@ -82,7 +93,7 @@ struct GameBoardState {
         // check primary diagonal win
         if self[Location(column:0,row:0)] == playerCell {
             var foundOther = false
-            for k in 1...GameBoardState.horizontalCount {
+            for k in 1..<GameBoardState.horizontalCount {
                 if self[Location(column:k,row:k)] != playerCell {
                     foundOther = true
                     break
@@ -94,10 +105,10 @@ struct GameBoardState {
         }
         
         // check secondary diagonal win
-        if self[Location(column:GameBoardState.horizontalCount-1,row:GameBoardState.verticalCount-1)] == playerCell {
+        if self[Location(column:0,row:GameBoardState.verticalCount-1)] == playerCell {
             var foundOther = false
-            for k in stride(from: GameBoardState.horizontalCount-2, to: 0, by: -1) {
-                if self[Location(column:k,row:k)] != playerCell {
+            for k in 1..<GameBoardState.horizontalCount {
+                if self[Location(column:k,row:GameBoardState.verticalCount-1-k)] != playerCell {
                     foundOther = true
                     break
                 }
@@ -116,8 +127,8 @@ struct GameBoardState {
         }
 
         var totalScore = 0
-        for i in 0...GameBoardState.horizontalCount {
-            for j in 0...GameBoardState.verticalCount {
+        for i in 0..<GameBoardState.horizontalCount {
+            for j in 0..<GameBoardState.verticalCount {
                 if self[Location(column:i,row:j)] == playerCell {
                     totalScore += 1
                 }
@@ -129,8 +140,8 @@ struct GameBoardState {
     func availableLocations() -> [Location] {
         var locations = [Location]()
         locations.reserveCapacity(GameBoardState.horizontalCount * GameBoardState.verticalCount)
-        for i in 0...GameBoardState.horizontalCount {
-            for j in 0...GameBoardState.verticalCount {
+        for i in 0..<GameBoardState.horizontalCount {
+            for j in 0..<GameBoardState.verticalCount {
                 let curLocation = Location(column:i,row:j)
                 if self[curLocation] == .empty {
                     locations.append(curLocation)
@@ -138,5 +149,17 @@ struct GameBoardState {
             }
         }
         return locations
+    }
+    
+    func isTie() -> Bool {
+        for i in 0..<GameBoardState.horizontalCount {
+            for j in 0..<GameBoardState.verticalCount {
+                let curLocation = Location(column:i,row:j)
+                if self[curLocation] == .empty {
+                    return false
+                }
+            }
+        }
+        return true
     }
 }
