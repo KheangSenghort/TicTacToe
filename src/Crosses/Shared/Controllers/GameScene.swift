@@ -34,7 +34,7 @@ class GameScene: SKScene {
     }
     
     func setUpScene() {
-        let gameBoard = self.childNode(withName: "//board") as! GameBoard
+        let gameBoard = self.childNode(withName: "//board") as! GameBoardSprite
         gameBoard.isUserInteractionEnabled = true
         
         // Get label node from scene and store it for use later

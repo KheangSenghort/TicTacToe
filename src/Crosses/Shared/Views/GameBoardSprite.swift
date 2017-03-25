@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class GameBoard : SKSpriteNode {
+class GameBoardSprite : SKSpriteNode {
     var currentBoardState = GameBoardState()
     
     func toggleState(at: CGPoint) {
@@ -48,7 +48,7 @@ class GameBoard : SKSpriteNode {
 
 #if os(iOS) || os(tvOS)
     // Touch-based event handling
-    extension GameBoard {
+    extension GameBoardSprite {
         override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
             let touch = touches.first!
             toggleState(at: touch.location(in: self))
