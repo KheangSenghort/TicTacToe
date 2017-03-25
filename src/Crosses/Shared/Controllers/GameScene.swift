@@ -23,7 +23,7 @@ class GameScene: SKScene,GameBoardSpriteDelegate,GameSessionDelegate {
         }
         
         // Set the scale mode to scale to fit the window
-        scene.scaleMode = .aspectFit
+        scene.scaleMode = .aspectFill
         
         return scene
     }
