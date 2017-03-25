@@ -9,25 +9,10 @@
 import SpriteKit
 
 class GameBoardSprite : SKSpriteNode {
-//    var currentBoardState = GameBoardState()
     
     weak var delegate : GameBoardSpriteDelegate?
     
     var cells = Dictionary<GameBoardState.Location,SKSpriteNode>()
-    
-//    func toggleState(at: CGPoint) {
-//        let boardPos = cellLocationFrom(nodePoint: at)
-//        print("toggleState: \(boardPos)")
-//        let cellValue = currentBoardState[boardPos]
-//        if cellValue == .empty {
-//            // toggle state
-//
-//            let node = SKSpriteNode(imageNamed: "Player_X")
-//            node.position = nodePointFrom(cellLocation: boardPos)
-//            self.addChild(node)
-//            currentBoardState[boardPos] = .playerX
-//        }
-//    }
     
     func handlePress(at pressLocation: CGPoint) {
         guard let delegate = self.delegate else {

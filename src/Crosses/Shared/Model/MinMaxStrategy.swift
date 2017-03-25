@@ -16,7 +16,6 @@ extension Player : GKGameModelPlayer {
     }
 }
 
-
 extension GameModel : GKGameModel {
 
     public func apply(_ gameModelUpdate: GKGameModelUpdate) {

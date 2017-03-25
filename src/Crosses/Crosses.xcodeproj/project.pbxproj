@@ -21,7 +21,6 @@
 		C09E1D071E861480003BBE7E /* GameBoardState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09E1D061E861480003BBE7E /* GameBoardState.swift */; };
 		C0A5DA441E86602500F12E41 /* GameBoardSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A5DA431E86602500F12E41 /* GameBoardSprite.swift */; };
 		C0C012951E86AC7B00E28AF2 /* GameScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C012941E86AC7B00E28AF2 /* GameScore.swift */; };
-		C0F42EC91E86933D00FE9C28 /* CrossesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F42EC81E86933D00FE9C28 /* CrossesTests.swift */; };
 		C0F42ED31E86938900FE9C28 /* GameBoardStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F42ED21E86938900FE9C28 /* GameBoardStateTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -53,7 +52,6 @@
 		C0A5DA431E86602500F12E41 /* GameBoardSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameBoardSprite.swift; sourceTree = "<group>"; };
 		C0C012941E86AC7B00E28AF2 /* GameScore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScore.swift; sourceTree = "<group>"; };
 		C0F42EC61E86933D00FE9C28 /* CrossesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CrossesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C0F42EC81E86933D00FE9C28 /* CrossesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrossesTests.swift; sourceTree = "<group>"; };
 		C0F42ECA1E86933D00FE9C28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C0F42ED21E86938900FE9C28 /* GameBoardStateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameBoardStateTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -152,7 +150,6 @@
 		C0F42EC71E86933D00FE9C28 /* CrossesTests */ = {
 			isa = PBXGroup;
 			children = (
-				C0F42EC81E86933D00FE9C28 /* CrossesTests.swift */,
 				C0F42ECA1E86933D00FE9C28 /* Info.plist */,
 			);
 			path = CrossesTests;
@@ -298,7 +295,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0F42ED31E86938900FE9C28 /* GameBoardStateTests.swift in Sources */,
-				C0F42EC91E86933D00FE9C28 /* CrossesTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
