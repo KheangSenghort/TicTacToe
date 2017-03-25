@@ -68,6 +68,13 @@ class GameBoardSprite : SKSpriteNode {
         self.addChild(cell)
         cells[location] = cell
     }
+    
+    func reset() {
+        for cell in cells.values {
+            cell.removeFromParent()
+        }
+        cells.removeAll(keepingCapacity: true)
+    }
 }
 
 

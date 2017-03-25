@@ -31,10 +31,22 @@ class GameSession {
     init() {
         userPlayer = model.allPlayers[0]
         computerPlayer  = model.allPlayers[1]
-        model.currentPlayer = userPlayer
+    }
+
+    func start(computerMove:Bool) {
+        guard model.currentPlayer == nil else {
+            return
+        }
+        
+        if computerMove {
+            model.currentPlayer = computerPlayer
+            calculateComputerMove()
+        } else {
+            model.currentPlayer = userPlayer
+        }
     }
     
-    func makeUserPlayerMove(location : GameBoardState.Location) -> Bool {
+    @discardableResult func makeUserPlayerMove(location : GameBoardState.Location) -> Bool {
         guard model.currentPlayer == userPlayer else {
             return false
         }

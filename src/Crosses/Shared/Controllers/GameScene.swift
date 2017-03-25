@@ -28,6 +28,8 @@ class GameScene: SKScene,GameBoardSpriteDelegate,GameSessionDelegate {
         return scene
     }
     
+    let gameRestartDelay = TimeInterval(0.3)
+    
     var session : GameSession? {
         didSet {
             if let s = session {
@@ -36,7 +38,7 @@ class GameScene: SKScene,GameBoardSpriteDelegate,GameSessionDelegate {
         }
     }
 
-    weak var gameBoard : GameBoardSprite? {
+    weak var gameBoard : GameBoardSprite! {
         didSet {
             if let v = gameBoard {
                 v.delegate = self
@@ -44,11 +46,25 @@ class GameScene: SKScene,GameBoardSpriteDelegate,GameSessionDelegate {
         }
     }
     
+    weak var titleLabel : SKLabelNode!
+
+    weak var statusLabel : SKLabelNode!
+    
+    var scores = GameScore()
+    
     func setUpScene() {
         let gameBoard = self.childNode(withName: "//board") as! GameBoardSprite
         gameBoard.isUserInteractionEnabled = true
         self.gameBoard = gameBoard
-        self.session = GameSession()
+        
+        self.titleLabel = self.childNode(withName: "//titleLabel") as! SKLabelNode
+        self.statusLabel = self.childNode(withName: "//statusLabel") as! SKLabelNode
+        
+        let session = GameSession()
+        self.session = session
+        self.titleLabel.text = NSLocalizedString("Your Move", comment: "Game Title")
+        updateScores()
+        session.start(computerMove: false)
     }
     
     #if os(watchOS)
@@ -66,11 +82,21 @@ class GameScene: SKScene,GameBoardSpriteDelegate,GameSessionDelegate {
         // Called before each frame is rendered
     }
     
+    func updateScores() {
+        self.statusLabel.text = String.localizedStringWithFormat(NSLocalizedString("Games Played: %d  Won: %d  Lost: %d", comment: "Score title"), scores.totalGamesPlayed,scores.totalVictories,scores.totalLosses)
+    }
+    
+    func restartGame() {
+        gameBoard.reset()
+        let session = GameSession()
+        self.session = session
+        session.start(computerMove: scores.lastGameLost)
+    }
+    
     // MARK: - GameBoardSpriteDelegate
     func gameBoardSprite(_ sprite: GameBoardSprite, didPressAtLocation pressLocation: GameBoardState.Location) {
-        if session!.makeUserPlayerMove(location: pressLocation) {
-            sprite.setCellAt(location: pressLocation, value: session!.userPlayer.chip)
-        }
+        self.titleLabel.text = ""
+        session!.makeUserPlayerMove(location: pressLocation)
     }
     
     // MARK: - GameSessionDelegate
@@ -80,13 +106,25 @@ class GameScene: SKScene,GameBoardSpriteDelegate,GameSessionDelegate {
     }
 
     func gameSession(_ session: GameSession, didWinForPlayer wonPlayer: Player) {
-        // TODO: handle win and reset
-        print("player won: \(wonPlayer.chip)")
+        scores.totalGamesPlayed += 1
+        if session.computerPlayer == wonPlayer {
+            scores.totalLosses += 1
+            scores.lastGameLost = true
+            self.titleLabel.text = NSLocalizedString("Computer Won!", comment: "Game Title")
+        } else if session.userPlayer == wonPlayer {
+            scores.totalVictories += 1
+            scores.lastGameLost = false
+            self.titleLabel.text = NSLocalizedString("You've Won!", comment: "Game Title")
+        }
+        updateScores()
+        self.perform(#selector(GameScene.restartGame), with: nil, afterDelay: gameRestartDelay)
     }
 
     func gameSessionDidTie(_ session: GameSession) {
-        print("end did tie")
+        scores.totalGamesPlayed += 1
+        self.titleLabel.text = NSLocalizedString("Tie Game", comment: "Game Title")
+        updateScores()
+        self.perform(#selector(GameScene.restartGame), with: nil, afterDelay: gameRestartDelay)
     }
-
 }
 
