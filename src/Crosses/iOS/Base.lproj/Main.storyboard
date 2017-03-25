@@ -17,10 +17,28 @@
                         <viewControllerLayoutGuide type="top" id="8aa-yV-Osq"/>
                         <viewControllerLayoutGuide type="bottom" id="qHh-Mt-9TT"/>
                     </layoutGuides>
-                    <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
+                    <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NL1-vU-ZBy" customClass="SKView">
+                                <rect key="frame" x="27.5" y="74.5" width="320" height="518"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="DVg-ko-mWk"/>
+                                    <constraint firstAttribute="height" constant="518" id="O29-o0-xUV"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.99215692281723022" green="0.9647059440612793" blue="0.89019614458084106" alpha="1" colorSpace="deviceRGB"/>
+                        <constraints>
+                            <constraint firstItem="NL1-vU-ZBy" firstAttribute="centerY" secondItem="3se-qz-xqx" secondAttribute="centerY" id="jWK-Xo-oEm"/>
+                            <constraint firstItem="NL1-vU-ZBy" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="utc-yc-e8M"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="sceneView" destination="NL1-vU-ZBy" id="gLH-lw-Pqd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>

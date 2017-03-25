@@ -12,13 +12,15 @@ import GameplayKit
 
 class GameViewController: UIViewController {
 
+    @IBOutlet weak var sceneView: SKView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let scene = GameScene.newGameScene()
 
         // Present the scene
-        let skView = self.view as! SKView
+        let skView = self.sceneView!
         skView.presentScene(scene)
         
         skView.ignoresSiblingOrder = true
@@ -31,7 +33,11 @@ class GameViewController: UIViewController {
     }
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .portrait
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            return .allButUpsideDown
+        } else {
+            return .all
+        }
     }
 
     override func didReceiveMemoryWarning() {
