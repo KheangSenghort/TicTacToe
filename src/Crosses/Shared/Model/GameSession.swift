@@ -38,6 +38,8 @@ class GameSession {
     let computerPlayer: Player
     
     let computerPlayerQueue = DispatchQueue(label: "computer AI",qos: .userInteractive)
+    
+    var disableComputerPlayer = false
  
     init() {
         userPlayer = model.allPlayers[0]
@@ -57,24 +59,32 @@ class GameSession {
         }
     }
     
-    @discardableResult func makeUserPlayerMove(location : GameBoardState.Location) -> Bool {
-        guard model.currentPlayer == userPlayer else {
+    
+    @discardableResult func makeCurrentPlayerMove(location : GameBoardState.Location) -> Bool {
+        guard let currentPlayer = model.currentPlayer else {
             return false
         }
-        guard model.canMove(location: location) else {
-            return false
-        }
+        
         model.move(location: location)
-        delegate?.gameSession(self, player: userPlayer, didMoveTo: location)
+        delegate?.gameSession(self, player: currentPlayer, didMoveTo: location)
         
         if model.isWin(for: userPlayer) {
             delegate?.gameSession(self, didWinForPlayer: userPlayer)
         } else if model.state.isTie() {
             delegate?.gameSessionDidTie(self)
         } else {
-            model.currentPlayer = computerPlayer
-            DispatchQueue.main.async {
-                self.calculateComputerMove()
+            if disableComputerPlayer {
+                // switch players
+                if currentPlayer == userPlayer {
+                    model.currentPlayer = computerPlayer
+                } else {
+                    model.currentPlayer = userPlayer
+                }
+            } else {
+                model.currentPlayer = computerPlayer
+                DispatchQueue.main.async {
+                    self.calculateComputerMove()
+                }
             }
         }
         return true

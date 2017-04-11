@@ -108,7 +108,7 @@ class GameScene: SKScene,GameBoardSpriteDelegate,GameSessionDelegate {
     
     func gameBoardSprite(_ sprite: GameBoardSprite, didPressAtLocation pressLocation: GameBoardState.Location) {
         self.titleLabel.text = ""
-        session!.makeUserPlayerMove(location: pressLocation)
+        session!.makeCurrentPlayerMove(location: pressLocation)
     }
     
     // MARK: - GameSessionDelegate
