@@ -1,6 +1,18 @@
 # Tic Tac Toe
 
-> The classic game!
+> Tic­Tac­Toe is a two­player board game, where both the players mark their spaces in a 3x3 grid with their respective symbols ‘O’ and ‘X’. The player who succeeds in placing three respective marks in a horizontal, vertical, or diagonal row wins the game.. If none of the players gets three in a row, the game ends in a draw. When the game begins, the first move is by the user. From then on, the player who wins the previous game gets to make the first move. In case of a draw, the player who made the last move in the previous game gets to move first.
+> (Source: http://en.wikipedia.org/wiki/Tic­tac­toe)
+
+> Design the game of Tic­Tac­Toe for smartphone/tablet where the user can play against his mobile device. Player should be able see the number of wins and loses.
+
+> Other Requirements
+> 
+> - The user interface should be simple and intuitive
+> - The solutions should be for Android or iOS platform
+> - The application should work on at least two different form factors
+> - The following features are NOT expected as part of the solution
+> - Game centre integration
+> - Multi­player game over network
 
 ## Features
 
